@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Chess-Horse">
+    <meta name="author" content="">
+    <meta name=”robots” content=”index,follow”>
+
+    <title>Chess-Horse</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+
+<body>
+<br/>
+
+<div class="container">
+    <div class="row">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="position">Position Horse</label>
+                <input type="text" maxlength="2" class="form-control" id="position" aria-describedby="positionHelp"
+                       placeholder="Enter position" name="position" pattern="^[A-Ha-h1-8]+$">
+                <small id="positionHelp" class="form-text text-muted">inform the current position of the horse.</small>
+            </div>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    {% if result %}
+    <br/>
+    <div class="row">
+        <hr>
+        <div class="col-md-12">
+            <h3>Possible movements</h3>
+            {% for r in result %}
+                <p>{{r}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+</body>
+
+</html>
